@@ -9,6 +9,7 @@ const Msg = styled.div`
   align-items: center;
 `;
 
+
 function InputName() {
   const [name, setName] = useState('');
   const [showReqName, setShowReqName] = useState(false);
