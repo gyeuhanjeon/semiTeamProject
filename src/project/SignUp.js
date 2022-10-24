@@ -22,6 +22,7 @@ const memberObj = {
   isId: "",
   isPassword: "",
   isPasswordCheck: "",
+  isBirth: ""
 };
 
 
@@ -177,13 +178,6 @@ function InputPassword() {
     }
   };
 
-  const [x, setX] = useState([]);
-  const [errorRadio, setErrorRadio] = useState('');
-  const onChangeRadioButton = useCallback(e => {
-    const xCurrent = e.target.value;
-    setX(xCurrent);
-  });
-
   memberObj.isPassword = password;
   memberObj.isPasswordCheck = password_check;
 
@@ -204,30 +198,62 @@ function InputPassword() {
         {showErrorPasswordCheck && error_password_check}
         {showAcceptPasswordCheck && accept_password_check}
       </Msg>
-      <div>
-        <label className="label1">
-          <input
 
-            className="radio2"
-            type="radio"
-            value="1"
-            checked={x === "1"}
-            onChange={onChangeRadioButton}
+    </div>
+  );
+}
 
-          />
-          남자
-        </label>
-        <label className="label2">
-          <input
-            className="radio3"
-            type="radio"
-            value="2"
-            checked={x === "2"}
-            onChange={onChangeRadioButton}
-          />
-          여자
-        </label>
+function InputSex() {
+  const [x, setX] = useState([]);
+  const [errorRadio, setErrorRadio] = useState('');
+  const onChangeRadioButton = useCallback(e => {
+    const xCurrent = e.target.value;
+    setX(xCurrent);
+  });
+
+  return(
+    <div>
+      <label className="label1">
+        <input
+
+          className="radio2"
+          type="radio"
+          value="1"
+          checked={x === "1"}
+          onChange={onChangeRadioButton}
+
+        />
+        남자
+      </label>
+      <label className="label2">
+        <input
+          className="radio3"
+          type="radio"
+          value="2"
+          checked={x === "2"}
+          onChange={onChangeRadioButton}
+        />
+        여자
+      </label>
+    </div>
+  );
+}
+
+function InputBirth() {
+  const [birth, setBirth] = useState('');
+
+  const onChangeBirth = e => { setBirth(e.target.value); };
+
+  memberObj.isBirth = birth;
+  console.log(birth);
+
+  return(
+    <div className='field-wrap'>
+      <div className='input-field'>
+        <span style={{display: 'inline-block', width: 150}}>생년월일</span>
+        <input type="date" value={birth} onChange={onChangeBirth} />
       </div>
+      
     </div>
   );
 }
@@ -245,6 +271,8 @@ function SignUp() {
       <InputName></InputName>
       <InputId></InputId>
       <InputPassword></InputPassword>
+      <InputBirth></InputBirth>
+      <InputSex></InputSex>
       <button type="submit" onClick={onClickButton}>회원가입</button>
     </div>
   );
