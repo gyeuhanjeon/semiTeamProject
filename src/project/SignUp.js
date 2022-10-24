@@ -1,6 +1,5 @@
-import {useState} from 'react';
+import { useState,useCallback } from 'react';
 import styled from 'styled-components';
-import App2 from './Addr2';
 
 // 정규식 조건
 const regexId = /^\w{8,20}$/;
@@ -61,8 +60,10 @@ function InputId() {
   const [showGuideId, setShowGuideId] = useState(false);
   const req_id = "아이디를 입력하세요."
   const guide_id = "아이디를 올바르게 입력해주세요."
-
   const onChangeId = e => { setId(e.target.value); };
+  
+  
+
 
   const input_Check_Id = () => {
     if(id === '') {
@@ -89,10 +90,11 @@ function InputId() {
         {showReqId && req_id}
         {showGuideId && guide_id}
       </Msg>
+      
     </div>
   );
 }
-  
+
 function InputPassword() {
   const [password, setPassword] = useState('');
   const [showGuidePassword, setShowGuidePassword] = useState(false);
@@ -106,7 +108,7 @@ function InputPassword() {
   const error_password_check = "비밀번호가 일치하지 않습니다."
   const accept_password_check = "비밀번호가 일치합니다."
 
-  const onChangePassword = e => { 
+  const onChangePassword = e => {
     setPassword(e.target.value);
     let temp_password = e.target.value;
 
@@ -128,7 +130,7 @@ function InputPassword() {
     }
   };
 
-  const onClickPassword = () => { 
+  const onClickPassword = () => {
     if (regexPw.test(password)) {
       setShowAcceptPassword(true); // 사용 가능한 비밀번호입니다.
       setShowGuidePassword(false); // 영문/숫자/특수문자 2가지 이상 조합 (8~20자)
@@ -142,7 +144,7 @@ function InputPassword() {
     if(password === '') alert('비밀번호를 입력하세요');
   };
 
-  const onChangePassword_check = e => { 
+  const onChangePassword_check = e => {
     setPassword_check(e.target.value);
     const temp_password_check = e.target.value;
 
@@ -163,7 +165,7 @@ function InputPassword() {
     }
   };
 
-  const onClickPassword_check = () => { 
+  const onClickPassword_check = () => {
     if(password == '') alert('비밀번호를 먼저 입력하세요.');
     else if (!regexPw.test(password)) alert('비밀번호를 확인하세요.');
   };
@@ -174,6 +176,13 @@ function InputPassword() {
       setShowErrorPasswordCheck(true); // 비밀번호가 일치하지 않습니다.
     }
   };
+
+  const [x, setX] = useState([]);
+  const [errorRadio, setErrorRadio] = useState('');
+  const onChangeRadioButton = useCallback(e => {
+    const xCurrent = e.target.value;
+    setX(xCurrent);
+  });
 
   memberObj.isPassword = password;
   memberObj.isPasswordCheck = password_check;
@@ -195,29 +204,36 @@ function InputPassword() {
         {showErrorPasswordCheck && error_password_check}
         {showAcceptPasswordCheck && accept_password_check}
       </Msg>
-    </div>
-  );
-}
+      <div>
+        <label className="label1">
+          <input
 
-function InputBirth() {
-  const [birth, setBirth] = useState('2022');
+            className="radio2"
+            type="radio"
+            value="1"
+            checked={x === "1"}
+            onChange={onChangeRadioButton}
 
-  const onChangeBirth = e => { setBirth(e.target.value); };
-
-  memberObj.isBirth = birth;
-
-  return(
-    <div className='field-wrap'>
-      <div className='input-field'>
-        <span style={{display: 'inline-block', width: 150}}>생년월일</span>
-        <input type="date" value={birth} onChange={onChangeBirth} required/>
+          />
+          남자
+        </label>
+        <label className="label2">
+          <input
+            className="radio3"
+            type="radio"
+            value="2"
+            checked={x === "2"}
+            onChange={onChangeRadioButton}
+          />
+          여자
+        </label>
       </div>
     </div>
   );
 }
 
 function onClickButton() {
-  if(memberObj.isName && memberObj.isId && memberObj.isPassword && memberObj.isBirth) {
+  if(memberObj.isName && memberObj.isId && memberObj.isPassword) {
     window.location.replace("/");
   } else alert('입력된 값을 확인하세요.');
 }
@@ -229,7 +245,6 @@ function SignUp() {
       <InputName></InputName>
       <InputId></InputId>
       <InputPassword></InputPassword>
-      <InputBirth></InputBirth>
       <button type="submit" onClick={onClickButton}>회원가입</button>
     </div>
   );
