@@ -11,6 +11,10 @@ const regexTel = /^\d{2,3}-\d{3,4}-\d{4}$/;
 
 const Msg = styled.div`
   color: red;
+  font-size: .8em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 const memberObj = {
