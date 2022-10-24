@@ -1,4 +1,7 @@
-const sytles = styled.div`
+import styled from "styled-components";
+
+
+const Sytles = styled.div`
 body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
@@ -8,7 +11,7 @@ body {
   justify-content: center;
 }
 
-.a {
+.login-card {
   width: 450px;
   background: rgba(255, 255, 255, .5);
   padding: 4rem;
@@ -188,20 +191,19 @@ body {
     width: 300px;
     padding: 2rem;
   }
-}
 }`
 
 function Login() {
 
     return(
-        <body>
-            
+      <Sytles>
+      <body>
         {/* // <!-- login-card-container 의 시작 --> */}
   <div className="login_card_container">
     
 
     {/* <!-- login-card 의 시작--> */}
-    <div className="a">
+    <div className="login-card">
 
       {/* <!-- login-card-logo --> */}
       <div className="login-card-logo">
@@ -279,6 +281,7 @@ function Login() {
   </div>
   {/* <!-- login-card-container 의 끝 --> */}
   </body>
+  </Sytles>
 
 );
 }

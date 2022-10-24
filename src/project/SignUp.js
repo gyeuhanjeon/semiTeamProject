@@ -95,7 +95,7 @@ function InputPassword() {
         setShowGuidePassword(true); // 영문/숫자/특수문자 2가지 이상 조합 (8~20자)
       }
   
-      if (password_check == '') console.log(password_check);
+      if (password_check === '') console.log(password_check);
       else if(password_check !== '' && (temp_password !== '' && temp_password === password_check)) {
         setShowAcceptPasswordCheck(true); // 비밀번호가 일치합니다.
         setShowErrorPasswordCheck(false); // 비밀번호가 일치하지 않습니다.
@@ -123,7 +123,7 @@ function InputPassword() {
       setPassword_check(e.target.value);
       const temp_password_check = e.target.value;
   
-      if(password == '') {
+      if(password === '') {
         alert('비밀번호를 먼저 입력하세요.');
       }
   
@@ -140,7 +140,7 @@ function InputPassword() {
     };
   
     const onClickPassword_check = () => { 
-      if(password == '') alert('비밀번호를 먼저 입력하세요.');
+      if(password === '') alert('비밀번호를 먼저 입력하세요.');
       else if (!regexPw.test(password)) alert('비밀번호를 확인하세요.');
     };
   

@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-const sytles = styled.div`
+
 body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
@@ -193,4 +193,3 @@ body {
     padding: 2rem;
   }
 }
-}`
