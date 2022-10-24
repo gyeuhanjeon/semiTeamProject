@@ -198,8 +198,25 @@ function InputPassword() {
   );
 }
 
+function InputBirth() {
+  const [birth, setBirth] = useState('2022');
+
+  const onChangeBirth = e => { setBirth(e.target.value); };
+
+  memberObj.isBirth = birth;
+
+  return(
+    <div className='field-wrap'>
+      <div className='input-field'>
+        <span style={{display: 'inline-block', width: 150}}>생년월일</span>
+        <input type="date" value={birth} onChange={onChangeBirth} required/>
+      </div>
+    </div>
+  );
+}
+
 function onClickButton() {
-  if(memberObj.isName && memberObj.isId && memberObj.isPassword) {
+  if(memberObj.isName && memberObj.isId && memberObj.isPassword && memberObj.isBirth) {
     window.location.replace("/");
   } else alert('입력된 값을 확인하세요.');
 }
@@ -211,6 +228,7 @@ function SignUp() {
       <InputName></InputName>
       <InputId></InputId>
       <InputPassword></InputPassword>
+      <InputBirth></InputBirth>
       <button type="submit" onClick={onClickButton}>회원가입</button>
     </div>
   );
