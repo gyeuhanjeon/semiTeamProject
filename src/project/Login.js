@@ -10,7 +10,6 @@ function Login() {
 
           <div className="Login-card-logo">
             <img src={logo} alt="logo" />
-            <div>ㅅ줭인</div>
           </div>
 
           <div className="Login-card-header">
