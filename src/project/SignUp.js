@@ -94,7 +94,7 @@ function InputPassword() {
   const [password, setPassword] = useState('');
   const [showGuidePassword, setShowGuidePassword] = useState(false);
   const [showAcceptPassword, setShowAcceptPassword] = useState(false);
-  const guide_password = "영문/숫자/특수문자 2가지 이상 조합 (8~20자)"
+  const guide_password = "영문/숫자/특수문자 2가지 이상 조합 (8~20자)(ex:Apple123*)"
   const accept_password = "사용 가능한 비밀번호입니다."
 
   let [password_check, setPassword_check] = useState('');
