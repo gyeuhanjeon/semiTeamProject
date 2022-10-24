@@ -5,7 +5,8 @@ export default function App2() {
   const [val1, setVal1] = useState("");
   const [setVal2] = useState("");
 
-  const { sido, sigugun} = hangjungdong;
+  const { sido, sigugun } = hangjungdong;
+  
   return (
     <div>
       <select onChange={(e) => setVal1(e.target.value)}>
