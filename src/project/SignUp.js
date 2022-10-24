@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import styled from 'styled-components';
+import App2 from './Addr2';
 
 // 정규식 조건
 const regexId = /^\w{8,20}$/;
@@ -211,6 +212,12 @@ function SignUp() {
       <InputName></InputName>
       <InputId></InputId>
       <InputPassword></InputPassword>
+    <div className='input-field'>
+      <span style={{display: 'inline-block', width: 150}}>주소</span>
+      <Msg>
+        <App2 />
+      </Msg>
+    </div>
       <button type="submit" onClick={onClickButton}>회원가입</button>
     </div>
   );
