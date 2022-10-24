@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import styled from 'styled-components';
+import App2 from './Addr2';
 
 // 정규식 조건
 const regexId = /^\w{8,20}$/;
