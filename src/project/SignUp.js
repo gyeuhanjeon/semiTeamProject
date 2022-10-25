@@ -32,13 +32,24 @@ const memberObj = {
 };
 
 function SignUp() {
-  const onSubmit = async () => {
-    memberObj.id = id;  // useState 를 통해서 만들어진 값을 객체에 넣음. 
-    memberObj.pwd = pwd;  // useState 를 통해서 만들어진 값을 객체에 넣음. 
-    memberObj.name = name;  // useState 를 통해서 만들어진 값을 객체에 넣음. 
-    memberObj.addr = addr;  // useState 를 통해서 만들어진 값을 객체에 넣음. 
-    memberObj.mail = mail;  // useState 를 통해서 만들어진 값을 객체에 넣음. 
-    memberObj.phone = phone; }
+
+  const onSubmit = () => {
+    memberObj.isId = InputId.id;  // useState 를 통해서 만들어진 값을 객체에 넣음. 
+    memberObj.isPassword = InputPassword.password;  
+    memberObj.isName = InputName.name;  
+  }
+
+function onClickButton() {
+  onSubmit();
+  if(memberObj.isName && memberObj.isId && memberObj.isPassword && memberObj.isPasswordCheck && memberObj.isBirth) {
+    console.log(onSubmit.isName);
+    console.log(onSubmit.isId);
+    console.log(onSubmit.isPassword);
+  }
+    // window.location.replace("/");
+  // } else alert('입력된 값을 확인하세요.');
+}
+
 
   return (
     <div>
@@ -48,7 +59,7 @@ function SignUp() {
       <InputBirth></InputBirth>
       <InputSex></InputSex>
       <App2></App2>
-      <button type="submit">회원가입</button>
+      <button type="submit" onClick={onClickButton}>회원가입</button>
     </div>
   );
 }
