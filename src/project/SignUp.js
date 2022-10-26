@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import App2 from './Addr2';
+// import App2 from './Addr2';
+import hangjungdong from "./hangjungdong";
 
 // 정규식 조건
 const regexId = /^\w{8,20}$/;
@@ -20,7 +21,8 @@ const memberObj = {
   isId: "",
   isPassword: "",
   isPasswordCheck: "",
-  isBirth: ""
+  isBirth: "",
+  isAddr: ""
 };
 
 function InputName() {
@@ -223,6 +225,8 @@ function InputSex() {
     setX(xCurrent);
   });
 
+  memberObj.isSex = x;
+
   return(
     <div>
       <label className="label1">
@@ -250,6 +254,47 @@ function InputSex() {
     </div>
   );
 }
+const InputAddr = () => {
+  const [value, setValue] = useState("");
+  const [setValue2] = useState("");
+
+  //변수값 변경을 위해 타겟밸류 설정
+  const onChangeValue = (e) => {
+    setValue(e.target.value);
+  }
+  const onChangeValue2 = (e) => {
+    setValue2(e.target.value);
+  }
+
+  const { sido, sigugun } = hangjungdong;
+  
+  return (
+    <div>
+      <select onChange={onChangeValue}>
+        <option value="">선택</option>
+        {/* map을 사용하여 한정동에 있는 키값을 받아옴 */}
+        {sido.map((el) => (
+          <option key={el.sido} value={el.sido}>
+            {el.codeNm}
+          </option>
+        ))}
+      </select>
+      <select onChange={onChangeValue2}>
+        <option value="">선택</option>
+        {sigugun
+        // 필터함수를 사용하여 배열을 필터링하여 군/구를 불러옴
+          .filter((el) => el.sido === value)
+          .map((el) => (
+            <option key={el.sigugun} value={el.sigugun}>
+              {el.codeNm}
+            </option>
+          ))}
+      </select>
+    </div>
+  );
+}
+
+
 
 function onClickButton() {
   if(memberObj.isName && memberObj.isId && memberObj.isPassword && memberObj.isPasswordCheck && memberObj.isBirth) {
@@ -258,7 +303,9 @@ function onClickButton() {
     console.log(memberObj.isPassword);
     console.log(memberObj.isPasswordCheck);
     console.log(memberObj.isBirth);
-    window.location.replace("/");
+    console.log(memberObj.isSex);
+    console.log(memberObj.isAddr);
+    // window.location.replace("/");
   } else alert('입력된 값을 확인하세요.');
 }
 
@@ -271,7 +318,7 @@ function SignUp() {
       <InputPassword></InputPassword>
       <InputBirth></InputBirth>
       <InputSex></InputSex>
-      <App2></App2>
+      <InputAddr></InputAddr>
       <button type="submit" onClick={onClickButton}>회원가입</button>
     </div>
   );
