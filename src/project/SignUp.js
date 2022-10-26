@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import styled from 'styled-components';
+import TeamAPI from './api/TeamAPI';
 // import App2 from './Addr2';
 import hangjungdong from "./hangjungdong";
 
@@ -61,7 +62,7 @@ function InputId() {
   const req_id = "아이디를 입력하세요."
   const guide_id = "아이디를 올바르게 입력해주세요."
   const onChangeId = e => { setId(e.target.value); };
-  
+    
   const input_Check_Id = () => {
     if(id === '') {
       setShowReqId(true); // 아이디를 입력하세요.
@@ -77,11 +78,36 @@ function InputId() {
 
   memberObj.isId = id;
 
+  
+const onClickLogin = async() => {
+  console.log("Click 회원가입");
+  // 가입 여부 우선 확인
+  const memberCheck = await TeamAPI.memberRegCheck(id);
+  // console.log(memberCheck);
+  console.log("가입가능여부 확인 : ", memberCheck.data.result);
+  // 가입 여부 확인 후 가입 절차 진행
+
+  // if (memberCheck.data.result === "OK") {
+  //     console.log("가입된 아이디가 없습니다. 다음 단계 진행 합니다.");
+  //     const memberReg = await TeamAPI.memberReg(id, pwd, name, mail);
+  //     console.log(memberReg.data.result);
+  //     if(memberReg.data.result === "OK") {
+  //         window.location.replace("/home");
+  //     } else {
+  //         console.log("회원 가입에 실패 했습니다.");
+  //     }
+
+  // } else {
+  //     console.log("이미 가입된 회원 입니다.");
+  // } 
+}
+
   return(
     <div className='field-wrap'>
       <div className='input-field'>
         <span style={{display: 'inline-block', width: 150}}>아이디</span>
         <input type="text" value={id} onChange={onChangeId} onBlur={input_Check_Id}/>
+        <button className='IdCheckBtn' onClick={onClickLogin}>중복확인</button>
       </div>
       <Msg>
         {showReqId && req_id}
@@ -91,6 +117,8 @@ function InputId() {
     </div>
   );
 }
+
+
 
 function InputPassword() {
   const [password, setPassword] = useState('');
@@ -268,6 +296,8 @@ const InputAddr = () => {
 
   const { sido, sigugun } = hangjungdong;
   
+  memberObj.isAddr = { value, setValue2 };
+
   return (
     <div>
       <select onChange={onChangeValue}>
@@ -305,7 +335,9 @@ function onClickButton() {
     console.log(memberObj.isBirth);
     console.log(memberObj.isSex);
     console.log(memberObj.isAddr);
-    // window.location.replace("/");
+    console.log("가입 완!!");
+    window.location.replace("/home");
+    
   } else alert('입력된 값을 확인하세요.');
 }
 
