@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import TeamAPI from './api/TeamAPI';
+import TeamAPI from '../api/TeamAPI';
 // import App2 from './Addr2';
-import hangjungdong from "./hangjungdong";
+import hangjungdong from "../hangjungdong";
 
 // 정규식 조건
 const regexId = /^\w{8,20}$/;

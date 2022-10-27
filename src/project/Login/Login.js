@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TeamAPI from '../api/TeamAPI';
-import '../Style_Login.css';
-import logo from './logo.png';
+import '../CSS/Style_Login.css';
+import logo from '../images/logo.png';
 
 function Login() {
   // 키보드 입력
